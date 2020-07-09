@@ -26,8 +26,8 @@ spring:
       enabled: false
   security:
     user:
-      name: admin
-      password: admin
+      name: ${J_REGISTRY_USERNAME}
+      password: ${J_REGISTRY_PASSWORD}
       roles: USER, ADMIN
   task:
     execution:
@@ -150,7 +150,7 @@ eureka:
     instance-info-replication-interval-seconds: 10
     registry-fetch-interval-seconds: 10
     service-url:
-      defaultZone: http://admin:${spring.security.user.password:admin}@localhost:${server.port}/eureka/
+      defaultZone: ${J_REGISTRY_DEFAULTZONE}
   server:
     # see discussion about enable-self-preservation:
     # https://github.com/jhipster/generator-jhipster/issues/3654
@@ -173,13 +173,13 @@ jhipster:
   clientApp:
     name: 'JHipsterRegistry'
   # By default CORS is disabled. Uncomment to enable.
-  # cors:
-  #     allowed-origins: "*"
-  #     allowed-methods: "*"
-  #     allowed-headers: "*"
-  #     exposed-headers: "Authorization,Link,X-Total-Count"
-  #     allow-credentials: true
-  #     max-age: 1800
+   cors:
+       allowed-origins: "*"
+       allowed-methods: "*"
+       allowed-headers: "*"
+       exposed-headers: "Authorization,Link,X-Total-Count"
+       allow-credentials: true
+       max-age: 1800
   swagger:
     default-include-pattern: /api/.*
     title: JHipster Registry API
